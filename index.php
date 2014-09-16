@@ -204,9 +204,14 @@ line-height: 1.4;
 .intro{
 	font-family: 'Pacifico', cursive;
 	font-size: 6rem; 
+	border-bottom:  none;
+}
+
+hgroup{
+	border: none;
 	-webkit-animation: joke 5s infinite; /* Chrome, Safari, Opera */
     animation: joke 5s infinite;
-}
+	}
 
 .vertical-center{
 	position: absolute;
@@ -234,12 +239,13 @@ line-height: 1.4;
 <section class='container'>
           <hgroup>
             <h1 class="intro vertical-center">Hello World</h1>
+            <span>Preston Blaylock</span>
           </hgroup>
      
 
 
         <footer>
-        	Preston Blaylock
+        	
         </footer>
 </section>
 
