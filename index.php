@@ -200,9 +200,12 @@ line-height: 1.4;
   overflow: auto;
   font-family: Menlo,Monaco,"Liberation Mono",Consolas,monospace !important;
 }
-
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
 .intro{
-
+	font-family: 'Pacifico', cursive;
+	font-size: 3rem; 
+	-webkit-animation: joke 5s infinite; /* Chrome, Safari, Opera */
+    animation: joke 5s infinite;
 }
 
 .vertical-center{
@@ -212,6 +215,31 @@ line-height: 1.4;
 	-ms-transform: translate(-50%, -50%); /* IE 9 */
     -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
     transform: translate(-50%, -50%);
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes joke {
+    0% {-ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
+    transform: translate(-50%, -50%);}
+    50% {-ms-transform: translate(-50%, -47%); /* IE 9 */
+    -webkit-transform: translate(-50%, -47%); /* Chrome, Safari, Opera */
+    transform: translate(-50%, -47%);}
+    100% {-ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
+    transform: translate(-50%, -50%);}
+}
+
+@keyframes joke {
+    0% {-ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
+    transform: translate(-50%, -50%);}
+    50% {-ms-transform: translate(-50%, -47%); /* IE 9 */
+    -webkit-transform: translate(-50%, -47%); /* Chrome, Safari, Opera */
+    transform: translate(-50%, -47%);}
+    100% {-ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
+    transform: translate(-50%, -50%);}
 }
 
 </style>
