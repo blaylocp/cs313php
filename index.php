@@ -201,6 +201,19 @@ line-height: 1.4;
   font-family: Menlo,Monaco,"Liberation Mono",Consolas,monospace !important;
 }
 
+.intro{
+
+}
+
+.vertical-center{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
+    transform: translate(-50%, -50%);
+}
+
 </style>
 
 </head>
@@ -208,7 +221,7 @@ line-height: 1.4;
 
 <section class='container'>
           <hgroup>
-            <h1>Hello World</h1>
+            <h1 class="intro vertical-center">Hello World</h1>
           </hgroup>
      
 
