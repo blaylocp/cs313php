@@ -226,11 +226,15 @@ hgroup{
 
 
 @-webkit-keyframes joke {
-    to {top: -3%;}
+	0%{top: 50%;}
+    50% {top: 47%;}
+    100% {top: 50%;}
 }
 
 @keyframes joke {
-    to {top: -3%;}
+    0%{top: 50%;}
+    50% {top: 47%;}
+    100% {top: 50%;}
 }
 
 </style>
