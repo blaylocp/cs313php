@@ -218,13 +218,11 @@ line-height: 1.4;
 }
 
 
-@-webkit-keyframes mymove {
-    from {top: 50%;}
+@-webkit-keyframes joke {
     to {top: 47%;}
 }
 
-@keyframes mymove {
-    from {top: 50%;}
+@keyframes joke {
     to {top: 47%;}
 }
 
