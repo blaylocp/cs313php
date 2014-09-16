@@ -211,8 +211,8 @@ line-height: 1.4;
 hgroup{
 	border: none;
 	margin: 0;
-	-webkit-animation: joke 5s infinite; /* Chrome, Safari, Opera */
-    animation: joke 5s infinite;
+	-webkit-animation: joke 3s infinite; /* Chrome, Safari, Opera */
+    animation: joke 3s infinite;
 	}
 
 .vertical-center{
