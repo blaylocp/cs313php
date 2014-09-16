@@ -219,11 +219,11 @@ line-height: 1.4;
 
 
 @-webkit-keyframes joke {
-    to {top: 47%;}
+    to {top: -3%;}
 }
 
 @keyframes joke {
-    to {top: 47%;}
+    to {top: -3%;}
 }
 
 </style>
