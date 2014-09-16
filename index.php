@@ -203,7 +203,7 @@ line-height: 1.4;
 @import url(http://fonts.googleapis.com/css?family=Pacifico);
 .intro{
 	font-family: 'Pacifico', cursive;
-	font-size: 3rem; 
+	font-size: 6rem; 
 	-webkit-animation: joke 5s infinite; /* Chrome, Safari, Opera */
     animation: joke 5s infinite;
 }
@@ -217,29 +217,15 @@ line-height: 1.4;
     transform: translate(-50%, -50%);
 }
 
-/* Chrome, Safari, Opera */
-@-webkit-keyframes joke {
-    0% {-ms-transform: translate(-50%, -50%); /* IE 9 */
-    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
-    transform: translate(-50%, -50%);}
-    50% {-ms-transform: translate(-50%, -47%); /* IE 9 */
-    -webkit-transform: translate(-50%, -47%); /* Chrome, Safari, Opera */
-    transform: translate(-50%, -47%);}
-    100% {-ms-transform: translate(-50%, -50%); /* IE 9 */
-    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
-    transform: translate(-50%, -50%);}
+
+@-webkit-keyframes mymove {
+    from {top: 50%;}
+    to {top: 47%;}
 }
 
-@keyframes joke {
-    0% {-ms-transform: translate(-50%, -50%); /* IE 9 */
-    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
-    transform: translate(-50%, -50%);}
-    50% {-ms-transform: translate(-50%, -47%); /* IE 9 */
-    -webkit-transform: translate(-50%, -47%); /* Chrome, Safari, Opera */
-    transform: translate(-50%, -47%);}
-    100% {-ms-transform: translate(-50%, -50%); /* IE 9 */
-    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
-    transform: translate(-50%, -50%);}
+@keyframes mymove {
+    from {top: 50%;}
+    to {top: 47%;}
 }
 
 </style>
