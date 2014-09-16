@@ -206,6 +206,8 @@ line-height: 1.4;
 	font-size: 6rem; 
 	border-bottom:  none;
 	margin: 0;
+	color: green;
+	white-space: nowrap;
 }
 
 hgroup{
