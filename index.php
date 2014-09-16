@@ -205,10 +205,12 @@ line-height: 1.4;
 	font-family: 'Pacifico', cursive;
 	font-size: 6rem; 
 	border-bottom:  none;
+	margin: 0;
 }
 
 hgroup{
 	border: none;
+	margin: 0;
 	-webkit-animation: joke 5s infinite; /* Chrome, Safari, Opera */
     animation: joke 5s infinite;
 	}
