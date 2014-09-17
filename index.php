@@ -247,7 +247,7 @@ hgroup{
 <section class='container'>
           <hgroup class="vertical-center">
             <h1 class="intro">Hello World</h1>
-            <span>Preston Blaylock</span>
+            <span>How are you doing?</span>
           </hgroup>
      
 
