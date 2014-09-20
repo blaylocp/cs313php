@@ -247,10 +247,8 @@ hgroup{
 <section class='container'>
           <hgroup class="vertical-center">
             <h1 class="intro">Hello World</h1>
-            <span>How are you doing?</span>
+            <span>Preston Blaylock</span>
           </hgroup>
-     
-
 
         <footer>
         	
@@ -258,4 +256,4 @@ hgroup{
 </section>
 
 </body>
-</html>
+</html>+
