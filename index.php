@@ -248,6 +248,7 @@ hgroup{
           <hgroup class="vertical-center">
             <h1 class="intro">Hello World</h1>
             <span>Preston Blaylock</span>
+            <span>CS 313</span>
           </hgroup>
 
         <footer>
