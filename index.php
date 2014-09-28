@@ -17,7 +17,7 @@
       </header>
       <div class="main-content">
         <div id="tabs-1" class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-8">
               <h1>About Me</h1>
               <h2>Where I Grew Up</h2>
               <p>My name is Preston Blaylock. I grew up in Rexburg Idaho. I am the third oldest of six kids, two brother and three sisters. I love my family very much they are my best friends. I enjoy web development, playing guitar, piano, photography, and being with people.</p>
