@@ -1,0 +1,172 @@
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+html,
+body{
+  height: 100%;
+}
+
+body{
+  background: url(/images/bg.jpg) repeat-y;
+  background-size: 100%;
+}
+
+.body-wrapper{
+  min-height: 100%;
+  max-width: 1000px;
+  margin: auto;
+  position: relative;
+}
+
+h1{
+  font-size: 2.5rem;
+  color: #0c825c;
+  margin: 20px 0;
+}
+
+h2{
+  font-size: 1.5rem;
+  color: #555;
+  margin: 30px 0 15px;
+}
+
+header{
+  height: 150px;
+}
+
+.logo1{
+  width: 25%;
+  margin-right: -4px;
+  display: inline-block;
+}
+
+.logo2{
+  width: 75%;
+  margin-right: -4px;
+  display: inline-block;
+}
+
+nav{
+  text-align: right;
+  height: 100%;
+  position: relative;
+}
+
+nav ul li,
+nav ul li a{
+  outline: none !important;
+}
+
+
+
+nav ul{
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  background: none;
+  background: none;
+}
+
+nav ul.ui-widget-header{
+  background: none;
+  border: none;
+}
+
+nav ul li{
+  display: inline-block;
+  margin: 0 10px;
+}
+
+nav ul li.ui-state-default{
+  border: none !important;
+  background: none !important;
+}
+
+nav ul li.ui-state-active{
+  border: none !important;
+  background: none !important;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{
+  color: #0c825c;
+}
+
+#tabs{
+  background: none;
+  border: none;
+}
+
+.personal-image{
+  width: 100%;
+}
+
+footer{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+@media all and (max-width: 1000px){
+  .body-wrapper{
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media all and (max-width: 767px){
+  header{
+    height: auto;
+  }
+
+  nav ul{
+    position: static;
+  }
+}
