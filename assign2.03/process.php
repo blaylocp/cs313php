@@ -68,6 +68,7 @@
       echo 'Trouble Inserting Data'; die;
     }
     else{
+      echo 'here'; die;
       $_SESSION['taken'] = true;
       displayResults();
     }
@@ -218,7 +219,7 @@ function getQuestion(){
 
 //Sum of rows
 function getSum(){
-    echo " inner sum "; 
+    echo " inner sum ";
     global $connection;
     echo $connection; die;
     $sql = 'SELECT COUNT(*) FROM survey_results';
