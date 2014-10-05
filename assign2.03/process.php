@@ -20,7 +20,6 @@
 
   //Create the results page
   if($action == 'getResults'){
-    echo "outer";
     displayResults();
   }
 
@@ -81,7 +80,7 @@ function displayResults(){
   //get variables
   $questionsResults = getQuestion();
   $sum = getSum();
-
+  echo $sum . "  ";
   //Programming values
   $php = getPhp();
   $c = getC();
@@ -90,7 +89,7 @@ function displayResults(){
   $ruby = getRuby();
   $python = getPython();
   $other = getOther();
-
+   echo $php . " ";
   //os values
   $mac = getMac();
   $windows = getWindows();
@@ -119,7 +118,7 @@ function displayResults(){
     array('Python', $python),
     array('Other',$other)
   );
-
+  print_r($_SESSION['programmingResults']); die;
   //Session for os table results.php
   $_SESSION['osResults'] = array(
     array('Mac',$mac),
