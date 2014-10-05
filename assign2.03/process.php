@@ -117,7 +117,7 @@ function displayResults(){
     array('Python', $python),
     array('Other',$other)
   );
-  print_r($_SESSION['programmingResults']); die;
+
   //Session for os table results.php
   $_SESSION['osResults'] = array(
     array('Mac',$mac),
@@ -218,9 +218,8 @@ function getQuestion(){
 
 //Sum of rows
 function getSum(){
-    echo " inner sum ";
     global $connection;
-    echo $connection; die;
+
     $sql = 'SELECT COUNT(*) FROM survey_results';
 
     if($stmt = $connection->prepare($sql)){
@@ -230,7 +229,6 @@ function getSum(){
     }
 
     $stmt->close();
-    echo $sum . "WE ARE AT THE SUM"; die;
     return $sum;
 }
 
