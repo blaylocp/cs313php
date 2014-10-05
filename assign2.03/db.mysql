@@ -1,0 +1,9 @@
+CREATE DATABASE survey;
+USE survey;
+CREATE TABLE survey_results
+( survey_id int NOT NULL PRIMARY KEY AUTO_INCREMENT
+, question_one VARCHAR(255) NOT NULL
+, question_two VARCHAR(255) NOT NULL
+, question_three VARCHAR(255) NOT NULL
+, question_four VARCHAR(255) NOT NULL
+);

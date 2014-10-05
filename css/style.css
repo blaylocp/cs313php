@@ -65,6 +65,11 @@ body{
   position: relative;
 }
 
+.survey .body-wrapper{
+	max-width: 570px;
+	text-align: center;
+}
+
 h1{
   font-size: 2.5rem;
   color: #0c825c;
@@ -79,6 +84,10 @@ h2{
 
 header{
   height: 150px;
+}
+
+.survey header{
+	height: auto;
 }
 
 .logo1{
@@ -97,6 +106,15 @@ nav{
   text-align: right;
   height: 100%;
   position: relative;
+}
+
+.survey nav{
+	text-align: center;
+	margin: 10px;
+}
+
+.survey nav a{
+	margin: 0 10px;
 }
 
 nav ul li,
@@ -145,6 +163,42 @@ nav ul li.ui-state-active{
 
 .personal-image{
   width: 100%;
+}
+
+.survey label{
+	font-size: 1.5rem;
+	color: #0c825c;
+}
+
+.survey .input-group{
+	margin: 40px auto;
+}
+
+.survey .survey-input{
+	margin: 10px;
+}
+
+.survey .survey-input input{
+	margin-right: 5px;
+}
+
+.survey input[type=submit]{
+	padding: 5px 10px;
+	background: #0c825c;
+	color: #fff;
+}
+
+.survey table{
+	width: 300px;
+	margin: auto;
+}
+
+.survey table td:first-child{
+	text-align: left;
+}
+
+.survey table td:last-child{
+	text-align: right;
 }
 
 footer{
