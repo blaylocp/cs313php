@@ -14,13 +14,13 @@
   //Set Action
   if($_GET['action']){
     $action = $_GET['action'];
-    echo $action; die;
   } elseif ($_POST['action']){
     $action = $_POST['action'];
   }
 
   //Create the results page
   if($action == 'getResults'){
+    echo "outer";
     displayResults();
   }
 
@@ -77,6 +77,7 @@
 
 //This function creates the results page
 function displayResults(){
+  echo $action . "inner"; die;
   //get variables
   $questionsResults = getQuestion();
   $sum = getSum();
