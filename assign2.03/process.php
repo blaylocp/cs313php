@@ -76,7 +76,6 @@
 
 //This function creates the results page
 function displayResults(){
-  echo $action . "inner"; die;
   //get variables
   $questionsResults = getQuestion();
   $sum = getSum();
