@@ -219,6 +219,7 @@ function getQuestion(){
 
 //Sum of rows
 function getSum(){
+    echo " inner sum "; die;
     global $connection;
 
     $sql = 'SELECT COUNT(*) FROM survey_results';
