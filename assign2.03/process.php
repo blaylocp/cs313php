@@ -68,7 +68,6 @@
       echo 'Trouble Inserting Data'; die;
     }
     else{
-      echo 'here'; die;
       $_SESSION['taken'] = true;
       displayResults();
     }

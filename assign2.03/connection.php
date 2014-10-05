@@ -5,7 +5,7 @@
   // $password = '';
   // $database = 'survey';
 
-  $host = '127.6.69.130';
+  $host = '127.6.69.130:3306';
   $username = 'adminLpXeHW3';
   $password = '6PhASee745Tt';
   $database = 'php';
