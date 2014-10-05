@@ -218,9 +218,9 @@ function getQuestion(){
 
 //Sum of rows
 function getSum(){
-    echo " inner sum "; die;
+    echo " inner sum "; 
     global $connection;
-
+    echo $connection; die;
     $sql = 'SELECT COUNT(*) FROM survey_results';
 
     if($stmt = $connection->prepare($sql)){
