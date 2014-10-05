@@ -230,6 +230,7 @@ function getSum(){
     }
 
     $stmt->close();
+    echo $sum . "WE ARE AT THE SUM"; die;
     return $sum;
 }
 
