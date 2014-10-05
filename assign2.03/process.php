@@ -14,6 +14,7 @@
   //Set Action
   if($_GET['action']){
     $action = $_GET['action'];
+    echo $action; die;
   } elseif ($_POST['action']){
     $action = $_POST['action'];
   }
