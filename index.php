@@ -32,7 +32,9 @@ The greatest thing that I have ever done in my life is serve a mission. I served
             </div>
         </div>
         <div id="tabs-2">
-          <h1>Coming Soon!</h1>
+          <ul>
+            <li><a href="/assign2.03/survey.php">Assign2.03</a></li>
+          </ul>
         </div>
       </div>
     </div>
