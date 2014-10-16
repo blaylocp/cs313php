@@ -34,6 +34,7 @@ The greatest thing that I have ever done in my life is serve a mission. I served
         <div id="tabs-2">
           <ul>
             <li><a href="/assign2.03/survey.php">Assign2.03</a></li>
+            <li><a href="/4.02/assign4.02.php">Assign4.02</a></li>
           </ul>
         </div>
       </div>

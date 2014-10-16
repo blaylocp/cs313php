@@ -30,7 +30,7 @@ mysqli_close($con);
 
 </p>
 
-<form name="bookScriptures" action="scripture-resources.php" method="post">
+<form name="bookScriptures" action="assign4.02.php" method="post">
   <input type="text" name="book" />
   <input type="submit" value="submit" />
 </form>
