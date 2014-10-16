@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -63,7 +63,7 @@ $dbName = "conference_notes";
 
 $con = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName);
   $sql = "SELECT * FROM SCRIPTURE WHERE book=?";
-  
+
   if($stmt = $con->prepare($sql)){
     $stmt->bind_param('s', $book);
 	$stmt->execute();
@@ -88,7 +88,7 @@ $con = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName);
     }
   }
 }
-?> 
+?>
 
 </body>
 </html>

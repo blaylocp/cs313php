@@ -1,6 +1,7 @@
+CREATE DATABASE conference_notes;
 USE DATABASE conference_notes;
 
-CREATE TABLE scripture
+CREATE TABLE SCRIPTURE
 (  id int PRIMARY KEY AUTO_INCREMENT
 ,  book varchar(25) NOT NULL
 ,  chapter int NOT NULL
