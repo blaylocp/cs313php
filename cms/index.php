@@ -1,36 +1,35 @@
-<?php echo 'THIS IS DUMB'; die; ?>
-
 <?php
 /***********************************************
  * Main Controller for the CMS
  ***********************************************/
 // Start the Session
-
-
 session_start();
 
 // Include the Model
-if(file_exists('/model/model.php')){
-  require_once '/model/model.php';
+
+if(file_exists($_SERVER['DOCUMENT_ROOT'] . '/cms/model/model.php')){
+  require_once($_SERVER['DOCUMENT_ROOT'] . '/cms/model/model.php');
 }
 else{
-  include '/templates/error.tpl.php'
+  header('Location: /cms/templates/error.tpl.php');
+  //include 'templates/error.tpl.php';
 }
 
 
 // Capture the action and assign it to a variable
 if($_GET['action']){
-  echo $action = $_GET['action'];
+   $action = $_GET['action'];
 } elseif ($_POST['action']){
-  echo $action = $_POST['action'];
+   $action = $_POST['action'];
 }
 
 // Get the Navigation Links
 $_SESSION['navigationLinks'] = getLinks();
 
-if($action == 'Webpage'){
-    $_SESSION['webpageData'] = getWebpageData($_GET['pageCode']);
-    include 'page.tpl.php'
+if($action === 'Webpage'){
+  $_SESSION['webpageData'] = getWebpageData($_GET['pageCode']);
+  $_SESSION['webpageComments'] = getCommentsWebpage($_GET['pageCode']);
+  header('Location: /cms/templates/page.tpl.php');
 }
 
 // elseif($action == ''){
@@ -41,7 +40,7 @@ if($action == 'Webpage'){
 //
 // }
 
-
-/*else{
-  include '/templates/home.tpl.php';
-}*/
+else{
+  $webpageData['pageTitle'] = 'Home Page';
+   header('Location: /cms/templates/home.tpl.php');
+}
