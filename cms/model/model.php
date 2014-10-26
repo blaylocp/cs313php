@@ -26,16 +26,82 @@ function getLinks(){
       $result[] = $row;
     }
     $stmt->close();
-
     if(!empty($result)){
       return $result;
     } else{
       return 0;
     }
 
+  } else{
+    echo 'didn\'t connect'; die;
   }
 }
 
+
+function getUsers(){
+  global $connection;
+
+  $sql = 'SELECT user_id, user_first_name, user_last_name FROM user';
+
+  if($stmt = $connection->prepare($sql)){
+    $stmt->bind_result( $userId, $userFirst, $userLast);
+    $result = array();
+    $row = array();
+    $stmt->execute();
+    while($stmt->fetch()){
+      $row['userId'] = $userId;
+      $row['userFullName'] = $userFirst . " " . $userLast;
+      $result[] = $row;
+    }
+  }
+  $stmt->close();
+
+  if(!empty($result)){
+    return $result;
+  }
+  elseif(empty($result)) {
+    return 0;
+  }
+  else{
+    return -1;
+  }
+}
+
+
+function getUsersData($userId){
+  global $connection;
+
+  $sql = 'SELECT u.user_id, u.user_first_name, u.user_middle_initial, u.user_last_name, u.username, u.password, r.role_name, r.role_value
+          FROM user u INNER JOIN role r ON (u.role_id = r.role_id)
+          WHERE user_id = ?';
+
+  if($stmt = $connection->prepare($sql)){
+    $stmt->bind_param('i', $userId);
+    $stmt->bind_result( $userId, $userFirst, $userMiddle, $userLast, $username, $password, $roleName, $roleValue);
+    $result = array();
+    $stmt->execute();
+    $stmt->fetch();
+      $result['userId'] = $userId;
+      $result['userFirst'] = $userFirst;
+      $result['userMiddle'] = $userMiddle;
+      $result['userLast'] = $userLast;
+      $result['username'] = $username;
+      $result['password'] = $password;
+      $result['roleName'] = $roleName;
+      $result['roleValue'] = $roleValue;
+  }
+  $stmt->close();
+
+  if(!empty($result)){
+    return $result;
+  }
+  elseif(empty($result)) {
+    return 0;
+  }
+  else{
+    return -1;
+  }
+}
 
 function getWebpageData($pageCode){
 
@@ -104,5 +170,153 @@ function getCommentsWebpage($pageCode){
     } else{
       return 0;
     }
+  }
+}
+
+function login($username, $password){
+  global $connection;
+
+
+  $sql = 'SELECT u.user_id, u.user_first_name, u.user_last_name, r.role_name, r.role_value
+          FROM user u INNER JOIN role r ON (u.role_id = r.role_id) WHERE u.username = ? AND u.password = ?';
+
+  if($stmt = $connection->prepare($sql)){
+    $stmt->bind_param('ss', $username, $password);
+    $stmt->bind_result( $userId, $userFirst, $userLast, $roleName, $roleValue);
+    $result = array();
+    $stmt->execute();
+    $stmt->fetch();
+    $result['userId'] = $userId;
+    $result['userFullName'] = $userFirst . " " . $userLast;
+    $result['userRole'] = $roleName;
+    $result['RoleValue'] = $roleValue;
+  }
+  $stmt->close();
+
+  if(!empty($result)){
+    return $result;
+  }
+  elseif(empty($result)) {
+    return 0;
+  }
+  else{
+    return -1;
+  }
+}
+
+
+function addComment($userId,$pageId,$comment){
+  global $connection;
+  $connection->autocommit(FALSE);
+  $flag = TRUE;
+
+  $sql = 'INSERT INTO comment VALUES(null,?,?,1,UTC_DATE(),1, UTC_DATE(),?)';
+  if($stmt = $connection->prepare($sql)){
+    $stmt->bind_param('sii',$comment, $pageId, $userId);
+    $stmt->execute();
+    $result = $connection->affected_rows;
+    $rowId = $connection->insert_id;
+    $stmt->close();
+  }
+
+  if($result == FALSE || $rowId == FALSE){
+    $flag = FALSE;
+  }
+
+  if($flag){
+    $connection->commit;
+    $connection->autocommit(TRUE);
+    return 1;
+  }
+  else{
+    $connection->rollback;
+    $connection->autocommit(TRUE);
+    return 0;
+  }
+}
+
+function updatePage($id, $title, $image, $text){
+  global $connection;
+  $connection->autocommit(FALSE);
+  $flag = TRUE;
+
+  $sql = 'UPDATE webpage SET page_title=?, page_image_url=?, page_text=?, last_update_date=UTC_DATE() WHERE page_id=?';
+  if($stmt = $connection->prepare($sql)){
+    $stmt->bind_param('sssi', $title, $image, $text, $id);
+    $stmt->execute();
+    $result = $connection->affected_rows;
+    $stmt->close();
+  }
+  if($result == FALSE){
+    $flag = FALSE;
+  }
+
+  if($flag){
+    $connection->commit;
+    $connection->autocommit(TRUE);
+    return 1;
+  }
+  else{
+    $connection->rollback;
+    $connection->autocommit(TRUE);
+    return 0;
+  }
+}
+
+function updateUser($firstName, $middleI, $lastName, $username, $password, $userId){
+  global $connection;
+  $connection->autocommit(FALSE);
+  $flag = TRUE;
+
+  $sql = 'UPDATE user SET user_first_name=?, user_middle_initial=?, user_last_name=?, username=?, password=?, last_update_date=UTC_DATE() WHERE user_id=?';
+  if($stmt = $connection->prepare($sql)){
+    $stmt->bind_param('sssssi', $firstName, $middleI, $lastName, $username, $password, $userId);
+    $stmt->execute();
+    $result = $connection->affected_rows;
+    $stmt->close();
+  }
+  if($result == FALSE){
+    $flag = FALSE;
+  }
+
+  if($flag){
+    $connection->commit;
+    $connection->autocommit(TRUE);
+    return 1;
+  }
+  else{
+    $connection->rollback;
+    $connection->autocommit(TRUE);
+    return 0;
+  }
+}
+
+function insertPage($pageTitle, $pageImage, $pageText, $userId){
+  global $connection;
+  $connection->autocommit(FALSE);
+  $flag = TRUE;
+
+  $sql = 'INSERT INTO `webpage`(`page_id`, `page_title`, `page_image_url`, `page_text`, `create_by`, `creation_date`, `last_updated_by`, `last_update_date`, `user_id`) VALUES (null, ?, ?, ?, 1, UTC_DATE(), 1, UTC_DATE(), ?)';
+  if($stmt = $connection->prepare($sql)){
+    $stmt->bind_param('sssi',$pageTitle, $pageImage, $pageText, $userId);
+    $stmt->execute();
+    $result = $connection->affected_rows;
+    $rowId = $connection->insert_id;
+    $stmt->close();
+  }
+
+  if($result == FALSE || $rowId == FALSE){
+    $flag = FALSE;
+  }
+
+  if($flag){
+    $connection->commit;
+    $connection->autocommit(TRUE);
+    return 1;
+  }
+  else{
+    $connection->rollback;
+    $connection->autocommit(TRUE);
+    return 0;
   }
 }

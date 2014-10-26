@@ -26,15 +26,13 @@
       }
     }
   ?>
+  <?php if(!empty($loginInfo)) : ?>
   <h2>Add a New Comment</h2>
-  <form>
-    <label>First Name</label>
-    <input type="text" />
-    <label>Middle Initial (optional)</label>
-    <input type="text" />
-    <label>Last Name</label>
-    <input type="text" />
-    <label>Comment</label>
-    <textarea></textarea>
+  <form method="post" action='/cms/index.php'>
+    <textarea name='comment'></textarea><br>
+    <input type="hidden" name="userId" value="<?php echo $loginInfo['userId'] ?>"/>
+    <input type="hidden" name="pageId" value="<?php echo $webpageData['pageId'] ?>"/>
+    <input type='submit' name='action' value='addComment'/>
   </form>
+  <?php endif; ?>
 </div>

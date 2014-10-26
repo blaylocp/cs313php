@@ -3,10 +3,9 @@
 session_start();
 
 // Get Session Variables
-$_SESSION['webpageData'];
-$loginInfo = $_SESSION['LoginInfo'];
-$navLinks = $_SESSION['navigationLinks'];
-
+ $loginInfo = $_SESSION['LoginInfo'];
+ $navLinks = $_SESSION['navigationLinks'];
+ $userData = $_SESSION['editUser'];
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -26,7 +25,7 @@ $navLinks = $_SESSION['navigationLinks'];
           <img src="/cms/images/logo.png" />
         </div>
         <div class="col-sm-4 page-title-wrapper header-section-2">
-          <h1 class="page-title-<?php echo $webpageData['pageTitle']; ?>">Home Page</h1>
+          <h1 class="page-title-<?php echo $webpageData['pageTitle']; ?>">Edit User</h1>
         </div>
         <nav class="col-sm-6 header-section-3">
           <ul>
@@ -44,14 +43,20 @@ $navLinks = $_SESSION['navigationLinks'];
       </div>
     </header>
     <div class="main-content">
-      <div class="row">
-        <div class="col-sm-12">
-          <p class="big-text">Hi welcome to the beta version of my CMS. I have been creating a simple cms for my Web Development class. The links are all created dynamically based on the pages in the database. Then the content from the database is pulled out and rendered using a standard template.</p><br>
-          <p class="big-text">So the inital phase is done. The links are created dyanmically the pages are created dynamically.</p><br>
-          <p class="big-text">The next phase will involve being able to add pages and update pages, and comments. I will be working on that next week.</p><br>
-        </div>
-        <div style="clear:both"></div>
-      </div>
+      <form method='post' action='/cms/index.php'>
+        <label>First Name</label>
+        <input type="text" name="firstName" value="<?php echo $userData['userFirst']; ?>" /><br>
+        <label>Middle Intial</label>
+        <input type="text" name="middleI" value="<?php echo $userData['userMiddle']; ?>" /><br>
+        <label>Last Name</label>
+        <input type="text" name="lastName" value="<?php echo $userData['userLast']; ?>" /><br>
+        <label>Username</label>
+        <input type="text" name="username" value="<?php echo $userData['username']; ?>" /><br>
+        <label>Password</label>
+        <input type="password" name="password" value="<?php echo $userData['password']; ?>" /><br>
+        <input type="hidden" name="userId" value="<?php echo $userData['userId']; ?>" />
+        <input type="submit" name="action" value="Update User" />
+      </form>
     </div>
     <?php include 'footer.tpl.php'; ?>
   </body>

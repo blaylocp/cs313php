@@ -4,7 +4,6 @@ session_start();
 
 // Get Session Variables
 $webpageData = $_SESSION['webpageData'];
-$loginInfo = $_SESSION['LoginInfo'];
 $webpageComments = $_SESSION['webpageComments'];
 
 ?>
@@ -16,7 +15,13 @@ $webpageComments = $_SESSION['webpageComments'];
      page-name-<?php echo $webpageData['pageTitle'];?> body-wrapper">
     <?php include 'header.tpl.php'; ?>
     <div class="main-content">
-      <?php include 'content.tpl.php'; ?>
+      <form method="post" action='/cms/index.php'>
+        <label>Username</label>
+        <input type="text" name='username'/>
+        <label>Password</label>
+        <input type="password" name='password'/>
+        <input type="submit" value="Login" name='action'/>
+      </form>
     </div>
     <?php include 'footer.tpl.php'; ?>
   </body>
