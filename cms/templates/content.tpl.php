@@ -8,7 +8,7 @@
   <div style="clear:both"></div>
   <div class="col-sm-12"><?php echo $webpageData['createdByFirstName'] . " " . $webpageData['createdByLastName'] . " | " . $webpageData['lastUpdated']; ?></div>
 </div>
-<div class="row comments-wrapper">
+<div class="row comments-wrapper col-sm-12">
   <h2>Comments</h2>
   <hr>
   <?php
@@ -20,7 +20,7 @@
         echo "<div class='comment-id-" . $comment['commentId'] . "'>";
         echo "<p>" . $comment['comment'] . "</p>";
         echo "<div class='comment-details'><span class='comment-name'>"
-        . $comment['commentName'] . "  |  </span><span class='comment-date'>".
+        . $comment['commentName'] . "</span><span>  |  </span><span class='comment-date'>".
         $comment['commentDate'] . "</div>";
         echo "</div><hr>";
       }
@@ -28,11 +28,11 @@
   ?>
   <?php if(!empty($loginInfo)) : ?>
   <h2>Add a New Comment</h2>
-  <form method="post" action='/cms/index.php'>
+  <form method="post" action='/cms/index.php' class="std-form">
     <textarea name='comment'></textarea><br>
     <input type="hidden" name="userId" value="<?php echo $loginInfo['userId'] ?>"/>
     <input type="hidden" name="pageId" value="<?php echo $webpageData['pageId'] ?>"/>
-    <input type='submit' name='action' value='addComment'/>
+    <input type='submit' name='action' value='Add Comment'/>
   </form>
   <?php endif; ?>
 </div>

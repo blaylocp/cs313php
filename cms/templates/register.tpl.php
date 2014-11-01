@@ -6,6 +6,7 @@ session_start();
  $loginInfo = $_SESSION['LoginInfo'];
  $navLinks = $_SESSION['navigationLinks'];
  $userData = $_SESSION['editUser'];
+ $registerError = $_SESSION['registerError'];
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -16,8 +17,6 @@ session_start();
     <header>
       <?php if(empty($loginInfo)){
               echo '<a href="/cms?action=LoginPage&amp;pageCode='. $webpageData['pageId'] .'">Login</a>';
-              echo ' | ';
-              echo '<a href="/cms?action=RegisterPage">Register</a>';
             } else{
               echo '<a href="/cms?action=Logout&amp;pageCode='. $webpageData['pageId'] .'">Logout</a>';
             }
@@ -27,7 +26,7 @@ session_start();
           <img src="/cms/images/logo.png" />
         </div>
         <div class="col-sm-4 page-title-wrapper header-section-2">
-          <h1 class="page-title-<?php echo $webpageData['pageTitle']; ?>">Edit User</h1>
+          <h1 class="page-title-<?php echo $webpageData['pageTitle']; ?>">Register</h1>
         </div>
         <nav class="col-sm-6 header-section-3">
           <ul>
@@ -46,18 +45,18 @@ session_start();
     </header>
     <div class="main-content">
       <form method='post' action='/cms/index.php' class="col-sm-6 col-sm-offset-3">
+        <span><?php echo $registerError; ?></span><br>
         <label>First Name</label><br>
-        <input type="text" name="firstName" value="<?php echo $userData['userFirst']; ?>" /><br>
+        <input type="text" name="firstName" required/><br>
         <label>Middle Intial</label><br>
-        <input type="text" name="middleI" value="<?php echo $userData['userMiddle']; ?>" /><br>
+        <input type="text" name="middleI"  /><br>
         <label>Last Name</label><br>
-        <input type="text" name="lastName" value="<?php echo $userData['userLast']; ?>" /><br>
+        <input type="text" name="lastName" required/><br>
         <label>Username</label><br>
-        <input type="text" name="username" value="<?php echo $userData['username']; ?>" /><br>
+        <input type="text" name="username" required/><br>
         <label>Password</label><br>
-        <input type="password" name="password" value="<?php echo $userData['password']; ?>" /><br>
-        <input type="hidden" name="userId" value="<?php echo $userData['userId']; ?>" />
-        <input type="submit" name="action" value="Update User" />
+        <input type="password" name="password" required/><br>
+        <input type="submit" name="action" value="Register" />
       </form>
     </div>
     <?php include 'footer.tpl.php'; ?>

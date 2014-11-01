@@ -59,11 +59,31 @@ elseif($action == 'Logout'){
   unset($_SESSION['LoginInfo']);
   $_SESSION['webpageData'] = getWebpageData($_GET['pageCode']);
   $_SESSION['webpageComments'] = getCommentsWebpage($_GET['pageCode']);
-  header('Location: /cms/templates/page.tpl.php');
+    header('Location: /cms/templates/home.tpl.php');
+    //header('Location: /cms/templates/page.tpl.php');
+}
+
+// Register
+elseif($action == 'Register'){
+  unset($_SESSION['registerError']);
+  $result = register($_POST['firstName'], $_POST['middleI'], $_POST['lastName'], $_POST['username'], $_POST['password']);
+
+  if($result == -1){
+    $_SESSION['registerError'] = "User Already Exsists!";
+    header('Location: /cms/templates/register.tpl.php');
+  }
+  else{
+      header('Location: /cms/templates/login.tpl.php');
+  }
+}
+
+elseif($action == 'RegisterPage'){
+  unset($_SESSION['registerError']);
+  header('Location: /cms/templates/register.tpl.php');
 }
 
 // Add a Comment
-elseif($action === 'addComment'){
+elseif($action === 'Add Comment'){
   $userId = $_POST['userId'];
   $pageId = $_POST['pageId'];
   $comment = $_POST['comment'];
@@ -91,7 +111,7 @@ elseif($action == 'Update User'){
 }
 
 // Update a Webpage
-elseif($action == 'updatePage'){
+elseif($action == 'Update Page'){
   $pageId = $_POST['pageId'];
   $result = updatePage($_POST['pageId'], $_POST['pageTitle'], $_POST['pageImage'],$_POST['pageText']);
   if($result == 1){

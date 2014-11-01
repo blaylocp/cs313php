@@ -19,6 +19,8 @@ session_start();
     <header>
       <?php if(empty($loginInfo)){
               echo '<a href="/cms?action=LoginPage&amp;pageCode='. $webpageData['pageId'] .'">Login</a>';
+              echo ' | ';
+              echo '<a href="/cms?action=RegisterPage">Register</a>';
             } else{
               echo '<a href="/cms?action=Logout&amp;pageCode='. $webpageData['pageId'] .'">Logout</a>';
             }
@@ -63,10 +65,10 @@ session_start();
       </div>
       <div class='insertPages'>
         <h2>Insert Page</h2>
-        <form method='post' action='/cms/index.php'>
-          <label>Page Title</label>
+        <form method='post' action='/cms/index.php' class="std-form">
+          <label>Page Title</label><br>
           <input type="text" name="pageTitle" /><br>
-          <label>Page Image URL</label>
+          <label>Page Image URL</label><br>
           <input type="text" name="pageImage" /><br>
           <label>Page Text</label><br>
           <textarea name="pageText" rows="20" cols="100"></textarea><br>

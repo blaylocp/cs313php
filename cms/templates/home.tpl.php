@@ -17,6 +17,8 @@ $navLinks = $_SESSION['navigationLinks'];
     <header>
       <?php if(empty($loginInfo)){
               echo '<a href="/cms?action=LoginPage&amp;pageCode='. $webpageData['pageId'] .'">Login</a>';
+              echo ' | ';
+              echo '<a href="/cms?action=RegisterPage">Register</a>';
             } else{
               echo '<a href="/cms?action=Logout&amp;pageCode='. $webpageData['pageId'] .'">Logout</a>';
             }

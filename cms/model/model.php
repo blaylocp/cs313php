@@ -11,6 +11,13 @@ else{
   include '/templates/error.tpl.php';
 }
 
+if(file_exists($_SERVER['DOCUMENT_ROOT'] . '/cms/model/password.php')){
+  require_once($_SERVER['DOCUMENT_ROOT'] . '/cms/model/password.php');
+}
+else{
+  echo 'Could not connect to the PASSWORD SCRIPT'; die;
+}
+
 function getLinks(){
   global $connection;
 
@@ -177,12 +184,13 @@ function login($username, $password){
   global $connection;
 
 
-  $sql = 'SELECT u.user_id, u.user_first_name, u.user_last_name, r.role_name, r.role_value
-          FROM user u INNER JOIN role r ON (u.role_id = r.role_id) WHERE u.username = ? AND u.password = ?';
+  $sql = 'SELECT u.user_id, u.user_first_name, u.user_last_name, r.role_name, r.role_value, u.password
+          FROM user u INNER JOIN role r ON (u.role_id = r.role_id) WHERE u.username = ?';
 
   if($stmt = $connection->prepare($sql)){
-    $stmt->bind_param('ss', $username, $password);
-    $stmt->bind_result( $userId, $userFirst, $userLast, $roleName, $roleValue);
+
+    $stmt->bind_param('s', $username);
+    $stmt->bind_result( $userId, $userFirst, $userLast, $roleName, $roleValue, $hashedPasswordFromDB);
     $result = array();
     $stmt->execute();
     $stmt->fetch();
@@ -193,10 +201,12 @@ function login($username, $password){
   }
   $stmt->close();
 
-  if(!empty($result)){
+  $verified = password_verify($password, $hashedPasswordFromDB);
+
+  if(!empty($result) && $verified == 1){
     return $result;
   }
-  elseif(empty($result)) {
+  elseif(empty($result) || $verified == 0) {
     return 0;
   }
   else{
@@ -267,6 +277,7 @@ function updateUser($firstName, $middleI, $lastName, $username, $password, $user
   global $connection;
   $connection->autocommit(FALSE);
   $flag = TRUE;
+  $password = password_hash($password, PASSWORD_DEFAULT);
 
   $sql = 'UPDATE user SET user_first_name=?, user_middle_initial=?, user_last_name=?, username=?, password=?, last_update_date=UTC_DATE() WHERE user_id=?';
   if($stmt = $connection->prepare($sql)){
@@ -317,6 +328,66 @@ function insertPage($pageTitle, $pageImage, $pageText, $userId){
   else{
     $connection->rollback;
     $connection->autocommit(TRUE);
+    return 0;
+  }
+}
+
+function register($firstName, $middleI, $lastName, $username, $password){
+  global $connection;
+  $connection->autocommit(FALSE);
+  $flag = TRUE;
+
+  $password = password_hash($password, PASSWORD_DEFAULT);
+
+  if(duplicateUser($username) == 0){
+
+
+    $sql = 'INSERT INTO `user` VALUES (null,  ?, ?, ?, ?, ?, 1, UTC_DATE(), 1, UTC_DATE(), 2)';
+
+    if($stmt = $connection->prepare($sql)){
+
+      $stmt->bind_param('sssss', $firstName, $middleI, $lastName, $username, $password);
+      $stmt->execute();
+      $result = $connection->affected_rows;
+      $rowId = $connection->insert_id;
+      $stmt->close();
+    }
+
+    if($result == FALSE || $rowId == FALSE){
+      $flag = FALSE;
+    }
+
+    if($flag){
+      $connection->commit;
+      $connection->autocommit(TRUE);
+      return 1;
+    }
+    else{
+      $connection->rollback;
+      $connection->autocommit(TRUE);
+      return 0;
+    }
+  }
+  else{
+    return -1;
+  }
+}
+
+function duplicateUser($username){
+  global $connection;
+
+  $sql = 'SELECT u.user_id FROM user u WHERE u.username = ?';
+
+  if($stmt = $connection->prepare($sql)){
+    $stmt->bind_param('s', $username);
+    $stmt->bind_result($userID);
+    $stmt->execute();
+    $stmt->fetch();
+  }
+  $stmt->close();
+  if(!empty($userID)){
+    return $userID;
+  } else{
     return 0;
   }
 }

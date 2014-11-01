@@ -12,10 +12,12 @@ session_start();
   <head>
     <?php include 'head.tpl.php'; ?>
   </head>
-  <body class="home body-wrapper">
+  <body class="home body-wrapper std-form">
     <header>
       <?php if(empty($loginInfo)){
               echo '<a href="/cms?action=LoginPage&amp;pageCode='. $webpageData['pageId'] .'">Login</a>';
+              echo ' | ';
+              echo '<a href="/cms?action=RegisterPage">Register</a>';
             } else{
               echo '<a href="/cms?action=Logout&amp;pageCode='. $webpageData['pageId'] .'">Logout</a>';
             }
@@ -43,15 +45,15 @@ session_start();
       </div>
     </header>
     <div class="main-content">
-      <form method='post' action='/cms/index.php'>
-        <label>Page Title</label>
+      <form method='post' action='/cms/index.php' class="col-sm-8 col-sm-offset-2">
+        <label>Page Title</label><br>
         <input type="text" name="pageTitle" value="<?php echo $pageData['pageTitle']; ?>" /><br>
-        <label>Page Image</label>
+        <label>Page Image</label><br>
         <input type="text" name="pageImage" value="<?php echo $pageData['pageImage']; ?>" /><br>
         <label>Page Text</label><br>
         <textarea name="pageText" rows="20" cols="100"><?php echo $pageData['pageText']; ?></textarea><br>
         <input type="hidden" name="pageId" value="<?php echo $pageData['pageId']; ?>" />
-        <input type="submit" name="action" value="updatePage" />
+        <input type="submit" name="action" value="Update Page" />
       </form>
     </div>
     <?php include 'footer.tpl.php'; ?>
